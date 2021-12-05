@@ -1,5 +1,7 @@
 from flask import Flask
-from helpers import todos_database
+from app.models import Author
+from db_helpers import todos_database
+from app import app, db
 
 
 app = Flask(__name__)
@@ -11,7 +13,10 @@ def init():
 
 @app.route("/api/v1/todos/", methods=["GET"])
 def get_all():
-    return todos_database.list()
+    u = Author(username="Eric", email="eric@idle.xx")
+    db.session.add(u)
+    return db.session.commit()
+    #return todos_database.list()
 
 @app.route("/api/v1/todos/add_p", methods=["POST"])
 def add_project():

@@ -1,4 +1,4 @@
-from models_stare import todos
+from models import todos
 import sql_function
 
 
@@ -24,7 +24,7 @@ class TodosDatabase:
             rows_t = cur.fetchall()
         return rows_p, rows_t
 
-    def add_project(self, name, start_date, end_date):
+    def add_author(self, name, start_date, end_date):
         with self.create_connection() as conn:
             todos.add_projekt(conn, name, start_date, end_date)
             conn.commit()
@@ -47,4 +47,4 @@ class TodosDatabase:
 
 
 
-todos_database = TodosDatabase("database.db")
+todos_database = TodosDatabase("biblioteka.db")
