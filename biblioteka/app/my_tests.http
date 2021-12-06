@@ -1,11 +1,22 @@
-GET http://localhost:5000/api/v1/todos/init
+GET http://localhost:5000/api/v1/library/
 ###
-GET http://localhost:5000/api/v1/todos/
+POST http://localhost:5000/api/v1/library/add_a
 ###
-POST http://localhost:5000/api/v1/todos/add_t/2
+POST http://localhost:5000/api/v1/library/add_b
 ###
-POST http://localhost:5000/api/v1/todos/add_p
+POST http://localhost:5000/api/v1/library/add_borrow/3
 ###
-PUT  http://localhost:5000/api/v1/todos/7
+PUT  http://localhost:5000/api/v1/library/update_a/3
 ###
-DELETE http://localhost:5000/api/v1/todos/4
+PUT  http://localhost:5000/api/v1/library/update_b/1
+###
+PUT  http://localhost:5000/api/v1/library/update_borrow/4
+###
+DELETE http://localhost:5000/api/v1/library/delete_a/9
+###
+DELETE http://localhost:5000/api/v1/library/delete_b/4
+###
+DELETE http://localhost:5000/api/v1/library/delete_borrow/4
+###
+POST http://localhost:5000/api/v1/library/add_association
+###

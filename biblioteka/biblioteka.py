@@ -1,4 +1,4 @@
-from app import app, db
+from app import app, db, routes
 from app.models import Author, Book, Borrowed
 
 @app.shell_context_processor

@@ -1,50 +1,76 @@
-from models import todos
-import sql_function
+from app.models import Author, Book, Borrowed
+from app import db
 
 
-
-class TodosDatabase:
-    def __init__(self, db_file):
-        self.db_file = db_file
-    
-    def create_connection(self):
-        return todos.create_connection(self.db_file)
-
-    def initial(self):
-        with self.create_connection() as conn:
-            todos.execute_sql(conn, sql_function.create_projects_sql)
-            todos.execute_sql(conn, sql_function.create_tasks_sql)
+class LibraryDatabase:
 
     def list(self):
-        with self.create_connection() as conn:
-            cur = conn.cursor()
-            cur.execute(f"SELECT * FROM projects")
-            rows_p = cur.fetchall()
-            cur.execute(f"SELECT * FROM tasks")
-            rows_t = cur.fetchall()
-        return rows_p, rows_t
+        authors=Author.query.all()
+        books=Book.query.all()
+        borrows=Borrowed.query.all()
+        return authors, books, borrows
 
-    def add_author(self, name, start_date, end_date):
-        with self.create_connection() as conn:
-            todos.add_projekt(conn, name, start_date, end_date)
-            conn.commit()
+    def add_author(self, username, email, name, surname):
+        a=Author(username=username,email=email,name=name,surname=surname)
+        db.session.add(a)
+        db.session.commit()
+
+    def add_book(self, title, year):
+        b=Book(title = title, year = year)
+        db.session.add(b)
+        db.session.commit()
+    
+    def add_borrowed(self, who_borrowed, when_borrowed, when_gave_back, book):
+        b=Book.query.get(book)
+        borrow=Borrowed(who_borrowed = who_borrowed, when_borrowed = when_borrowed, when_gave_back = when_gave_back, books=b)
+        db.session.add(borrow)
+        db.session.commit()    
  
-    def add_task(self, project_id, name, description, status, start_date, end_date):
-        with self.create_connection() as conn:
-            rows_p_no=len(todos.select_all(conn, "projects"))    
-            if project_id<=rows_p_no:    
-                todos.add_task(conn, project_id, name, description, status, start_date, end_date)
-                conn.commit()
+    def update_author(self, username, email, name, surname, author_no):
+        author = Author.query.get(author_no)
+        author.username = username
+        author.email = email
+        author.name= name
+        author.surname=surname
+        db.session.add(author)
+        db.session.commit()
 
-    def update(self, table, table_id, column, value):
-        with self.create_connection() as conn:
-            todos.update(conn, table, table_id, column, value)
+    def update_book(self, title, year, book_no):
+        book = Book.query.get(book_no)
+        book.title = title
+        book.year = year
+        db.session.add(book)
+        db.session.commit()
 
-    def delete(self, table, table_id):
-        with self.create_connection() as conn:
-            todos.delete_where(conn, table, table_id)
-            conn.commit()
+    def update_borrowed(self, who_borrowed, when_borrowed, when_gave_back, borrow_no):
+        borrow = Borrowed.query.get(borrow_no)
+        borrow.who_borrowed = who_borrowed
+        borrow.when_borrowed= when_borrowed
+        borrow.when_gave_back= when_gave_back
+        db.session.add(borrow)
+        db.session.commit()
 
+    def delete_author(self, author_no):
+        author=Author.query.get(author_no)
+        db.session.delete(author)
+        db.session.commit()
 
+    def delete_book(self, book_no):
+        book=Book.query.get(book_no)
+        db.session.delete(book)
+        db.session.commit()
 
-todos_database = TodosDatabase("biblioteka.db")
+    def delete_borrow(self, book_no):
+        b=Book.query.get(book_no)
+        borrow = Borrowed.query.get(b)
+        db.session.delete(borrow)
+        db.session.commit()
+
+    def add_association(self, author_no, book_no):
+        a=Author.query.get(author_no)
+        b=Book.query.get(book_no)
+        a.books.append(b)
+        db.session.add(a)
+        db.session.commit()
+
+library_database = LibraryDatabase()
