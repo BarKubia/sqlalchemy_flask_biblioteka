@@ -1,26 +1,22 @@
 GET http://localhost:5000/api/v1/library/
 ###
-POST http://localhost:5000/api/v1/library/add_a
+POST http://localhost:5000/api/v1/library/add_a/sername/112email@em.pl/112name/112surname
 ###
+POST http://localhost:5000/api/v1/library/add_b/221tittle/2001
 ###
-POST http://localhost:5000/api/v1/library/add_a/121username/112email@em.pl/112name/112surname
+POST http://localhost:5000/api/v1/library/add_borrow/3/Tom/2011-12-10/2012-11-13
 ###
-
-POST http://localhost:5000/api/v1/library/add_b
+PUT  http://localhost:5000/api/v1/library/update_a/3/121zzzzusername/112ezzzzmail@em.pl/11zzzz2name/11zzzz2surname
 ###
-POST http://localhost:5000/api/v1/library/add_borrow/3
+PUT  http://localhost:5000/api/v1/library/update_b/4/title2121/2200
 ###
-PUT  http://localhost:5000/api/v1/library/update_a/3
+PUT  http://localhost:5000/api/v1/library/update_borrow/5/Jack/2011-12-10/2012-11-13
 ###
-PUT  http://localhost:5000/api/v1/library/update_b/1
-###
-PUT  http://localhost:5000/api/v1/library/update_borrow/4
-###
-DELETE http://localhost:5000/api/v1/library/delete_a/9
+DELETE http://localhost:5000/api/v1/library/delete_a/6
 ###
 DELETE http://localhost:5000/api/v1/library/delete_b/4
 ###
-DELETE http://localhost:5000/api/v1/library/delete_borrow/4
+DELETE http://localhost:5000/api/v1/library/delete_borrow/5
 ###
-POST http://localhost:5000/api/v1/library/add_association
+POST http://localhost:5000/api/v1/library/add_association/3/2
 ###

@@ -9,17 +9,6 @@ class LibraryDatabase:
         authors=Author.query.all()
         books=Book.query.all()
         borrows=Borrowed.query.all()
-        print(authors)
-        authors_json = json.dumps(authors)
-        # books_json = json.dumps(books)
-        # borrows_json = json.dumps(borrows)
-      
-        print(authors_json)
-        # print(books)
-        # print(books_json)
-        # print(borrows)
-        # print(borrows_json)
-        # return authors_json
 
     def add_author(self, username, email, name, surname):
         a=Author(username=username,email=email,name=name,surname=surname)
@@ -71,9 +60,9 @@ class LibraryDatabase:
         db.session.delete(book)
         db.session.commit()
 
-    def delete_borrow(self, book_no):
-        b=Book.query.get(book_no)
-        borrow = Borrowed.query.get(b)
+    def delete_borrow(self, borrow_no):
+        #b=Book.query.get(book_no)
+        borrow = Borrowed.query.get(borrow_no)
         db.session.delete(borrow)
         db.session.commit()
 
