@@ -2,6 +2,10 @@ GET http://localhost:5000/api/v1/library/
 ###
 POST http://localhost:5000/api/v1/library/add_a
 ###
+###
+POST http://localhost:5000/api/v1/library/add_a/121username/112email@em.pl/112name/112surname
+###
+
 POST http://localhost:5000/api/v1/library/add_b
 ###
 POST http://localhost:5000/api/v1/library/add_borrow/3

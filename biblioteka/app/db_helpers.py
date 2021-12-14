@@ -1,5 +1,6 @@
 from app.models import Author, Book, Borrowed
 from app import db
+import json
 
 
 class LibraryDatabase:
@@ -8,7 +9,17 @@ class LibraryDatabase:
         authors=Author.query.all()
         books=Book.query.all()
         borrows=Borrowed.query.all()
-        return authors, books, borrows
+        print(authors)
+        authors_json = json.dumps(authors)
+        # books_json = json.dumps(books)
+        # borrows_json = json.dumps(borrows)
+      
+        print(authors_json)
+        # print(books)
+        # print(books_json)
+        # print(borrows)
+        # print(borrows_json)
+        # return authors_json
 
     def add_author(self, username, email, name, surname):
         a=Author(username=username,email=email,name=name,surname=surname)
