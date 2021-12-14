@@ -61,7 +61,6 @@ class LibraryDatabase:
         db.session.commit()
 
     def delete_borrow(self, borrow_no):
-        #b=Book.query.get(book_no)
         borrow = Borrowed.query.get(borrow_no)
         db.session.delete(borrow)
         db.session.commit()
