@@ -6,9 +6,10 @@ import json
 class LibraryDatabase:
 
     def list(self):
-        authors=Author.query.all()
-        books=Book.query.all()
-        borrows=Borrowed.query.all()
+        return Book.query.all()
+        #authors=Author.query.all()
+        #books=Book.query.all()
+        #borrows=Borrowed.query.all()
 
     def add_author(self, username, email, name, surname):
         a=Author(username=username,email=email,name=name,surname=surname)

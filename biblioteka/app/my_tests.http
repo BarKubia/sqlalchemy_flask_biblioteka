@@ -1,8 +1,8 @@
-GET http://localhost:5000/api/v1/library/
+GET http://localhost:5000/api/v1/library
 ###
 POST http://localhost:5000/api/v1/library/add_a/sername/112email@em.pl/112name/112surname
 ###
-POST http://localhost:5000/api/v1/library/add_b/221tittle/2001
+POST http://localhost:5000/api/v1/library/add_b/221txxittle/2001
 ###
 POST http://localhost:5000/api/v1/library/add_borrow/3/Tom/2011-12-10/2012-11-13
 ###
