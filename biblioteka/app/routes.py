@@ -32,7 +32,9 @@ def get_all():
             authors=[]
             for author in authors:
                 authors.append(author.surname)
-        books_and_authors[book.title]=author
+        else:
+            authors=[]
+        books_and_authors[book.title]=authors
     return json.dumps(books_and_authors)
 
 """
