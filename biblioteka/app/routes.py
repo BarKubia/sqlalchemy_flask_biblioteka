@@ -22,6 +22,22 @@ def get_all():
     books_json=json.dumps(books_and_authors)
     return books_json
 
+"""
+@app.route("/api/v1/library", methods=["GET"])
+def get_all():
+    books_and_authors = {}
+    books = library_database.list()
+    for book in books:
+        if book.authors:
+            authors=[]
+            for author in authors:
+                authors.append(author.surname)
+        books_and_authors[book.title]=author
+    return json.dumps(books_and_authors)
+
+"""
+    
+
 @app.route("/api/v1/library/add_a/<username>/<email>/<name>/<surname>", methods=["POST"])
 def add_author(username,email,name,surname):
     library_database.add_author(username, email, name, surname)
